@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewData["Title"] = "Registration";
+}
+
+
+
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+           
+            <h1 class="display-5 text-uppercase mb-0">Registration</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <form asp-controller="Home" asp-action="Registration" method="post">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <input type="text" class="form-control bg-light border-0 px-4" name="FirstName" id="FirstName" placeholder="Your First Name" style="height: 55px;">
+                            <span style="color:red" id="eFirstName"></span>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control bg-light border-0 px-4" name="LastName" id="LastName" placeholder="Your Last Name" style="height: 55px;">
+                            <span style="color:red" id="eLastName"></span>
+                        </div>
+                        <div class="col-12">
+                            <input type="email" class="form-control bg-light border-0 px-4" name="Email" id="Email" placeholder="Your Email" onblur="checkemail()" style="height: 55px;">
+                            <span style="color:red" id="eEmail"></span>
+                            <span style="color:greenyellow" id="epEmail"></span>
+                        </div>
+                        
+                        <div class="col-12">
+                            <input type="text" class="form-control bg-light border-0 px-4" name="Phone" id="Phone" placeholder="Phone" style="height: 55px;">
+                            <span style="color:red" id="ePhone"></span>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="male" name="gender" value="Male">
+
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="female" name="gender" value="Female">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Female
+                            </label>
+                        </div>
+                        <span style="color:red" id="eGender"></span>
+
+                        <div class="col-12">
+                            <select class="form-select bg-light border-0 px-4" id="CityId" name="cityid"  asp-items='(List<SelectListItem>)ViewData["Citys"]'></select><br />
+                            <span style="color:red" id="eCityId"></span>
+                        </div>
+
+                       <p><input type=checkbox value=yes name='terms1' id="terms">
+                            I Agree to <a href='#'>Terms & Conditions </a>
+                            <span style="color:red" id="eTerms"></span>
+
+                        </p>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" id="btnSubmit" onclick="return validate()"  type="submit">Registration</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-5">
+                <div class="bg-light mb-5 p-5">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-geo-alt fs-1 text-primary me-3"></i>
+                        <div class="text-start">
+                            <h6 class="text-uppercase mb-1">Our Office</h6>
+                            <span>123 Street, New York, USA</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
+                        <div class="text-start">
+                            <h6 class="text-uppercase mb-1">Email Us</h6>
+                            <span>info@example.com</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
+                        <div class="text-start">
+                            <h6 class="text-uppercase mb-1">Call Us</h6>
+                            <span>+012 345 6789</span>
+                        </div>
+                    </div>
+                    <div>
+                        <iframe class="position-relative w-100"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                                frameborder="0" style="height: 205px; border:0;" allowfullscreen="" aria-hidden="false"
+                                tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<script>
+
+    function validate(){
+        var result = true;
+       
+        var firstname = $("#FirstName").val();
+       
+        if(firstname == ""){    
+            result = false;
+         
+            $("#eFirstName").html("please enter firstname");
+
+        }
+        else{
+            $("#eFirstName").html("");
+        }
+        var Male = $("#male").prop('checked');
+        var Female  = $("#female").prop('checked');
+        debugger;
+        if(Male || Female){
+           
+          
+            $("#eGender").html("");
+        }
+        else{
+            result = false;
+            $("#eGender").html("Please fill the gender");
+        }
+     
+        var lastname = $("#LastName").val();
+        if (lastname == "") {
+            result = false;
+           
+            $("#eLastName").html("please enter lastname");
+
+        }
+        else {
+            $("#eLastName").html("");
+        }
+        var email = $("#Email").val();
+        if (email == "") {
+            result = false;
+            $("#eEmail").html("please enter email");
+
+        }
+        else {
+            $("#eEmail").html("");
+        }
+        var password = $("#Password").val();
+        if (password == "") {
+            result = false;
+            $("#ePassword").html("please enter password");
+
+        }
+        else {
+            $("#ePassword").html("");
+        }
+
+        var Phone = $("#Phone").val();
+        if (Phone == "") {
+            result = false;
+            $("#ePhone").html("please enter phone");
+
+        }
+        else {
+            $("#ePhone").html("");
+        }
+
+        var CityCheckbox = $("#CityId").val();
+        if (CityCheckbox == "0") {
+            result = false;
+            $("#eCityId").html("please select city");
+
+        }
+        else {
+            $("#eCityId").html("");
+        }
+     
+    
+        var check_status = $("#terms").prop('checked');
+        
+
+
+        if(check_status){
+            
+            $("#eTerms").html("");
+        }
+        else{
+            result = false;
+            $("#eTerms").html("Please accept all the terms and conditions");
+        }
+    
+
+        return result;
+    }
+
+   
+    
+</script>

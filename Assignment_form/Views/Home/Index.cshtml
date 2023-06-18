@@ -1,0 +1,15 @@
+﻿@using Assignment_models;
+
+
+@{
+    foreach (Alldetail item in Model)
+    {
+        <h1>FirstName: @item.FirstName</h1>
+        <h2>LastName: @item.LastName</h2>
+        <h3>Email: @item.Email</h3>
+        <h3>Gender:@item.gender</h3>
+        <h3>Country:@item.Country</h3>
+        <h3>Phone:@item.Phone</h3>
+    }
+}
+
